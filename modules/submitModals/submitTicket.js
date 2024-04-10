@@ -48,15 +48,15 @@ async function submitTicket(interaction,client) {
           
       const embed = new Discord.EmbedBuilder()
         .setTitle(`Olá ${interaction.user.username}`)
-        .setColor(0x004CFF)
-        .setDescription(`Sua dúvida: ${stringMarkdow}${question}${stringMarkdow}`)
+        .setColor(0xDC6E00)
+        .setDescription(`Aguarde algum atendente para solucionar sua dúvida ou problema: ${stringMarkdow}${question}${stringMarkdow}`)
         .setTimestamp()
 
       const button = new Discord.ActionRowBuilder().addComponents(
         new Discord.ButtonBuilder()
           .setCustomId("deleteTicket")
-          .setLabel("X")
-          .setEmoji("<:signUp:1199292028165574767>") 
+          .setLabel("Fechar canal")
+          .setEmoji("<:deleteAd:1199292226988154880>") 
           .setStyle(Discord.ButtonStyle.Primary),
       );
 

@@ -3,9 +3,9 @@ const mysql = require('mysql');
 // Configuração da conexão com o banco de dados
 const connection = mysql.createConnection({
   host: process.env.HOST, // Endereço do servidor MySQL
-  user: process.env.USER,
+  user: "awk_",
   password: process.env.PASSWORD,
-  database: process.env.DATABASE
+  database: process.env.DATABASE,
 });
 
 // Conectar ao banco de dados

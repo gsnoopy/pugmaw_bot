@@ -9,7 +9,7 @@ module.exports = {
     {
       type: Discord.ApplicationCommandOptionType.String,
       name: "user",
-      description: "Digite o id do user",
+      description: "Digite o nome do usuário",
       required: true
     },
     {
@@ -20,23 +20,31 @@ module.exports = {
   }
 ],
   run: async (client,interaction) => {
-    
-    if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.ManageGuild)) {
 
-      interaction.reply({ content: `Você não possui permissão para utilzar este comando!`, ephemeral: true });
+    try{
 
-    } else {
+      if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.ManageGuild)) {
 
-      await interaction.deferReply({ephemeral: true});
+        interaction.reply({ content: `Você não possui permissão para utilzar este comando!`, ephemeral: true });
+  
+      } else {
+  
+        await interaction.deferReply({ephemeral: true});
+        
+        const valorString = interaction.options.getString("valor");
+        const valor = Number(valorString);
+        const valorSemDecimal = Math.floor(valor);
+        const user = interaction.options.getString("user");
+  
+        await updateSaldo(user,valorSemDecimal)
+  
+        interaction.editReply({content: `${valorSemDecimal} adicionado para o usuário: **${user}**`, ephemeral: true});
       
-      const valorString = interaction.options.getString("valor");
-      const valor = Number(valorString.replace(',', '.'));
-      const user = interaction.options.getString("user");
+      }
 
-      await updateSaldo(user,valor)
-
-      interaction.editReply({content: `${valor} adicionado para o usuário: ${user}`, ephemeral: true});
-    
+    }catch{
+      interaction.editReply({content: `Digita direito ai LIL`, ephemeral: true});
     }
+    
   }
 }

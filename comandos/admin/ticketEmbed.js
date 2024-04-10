@@ -14,10 +14,10 @@ module.exports = {
     } else {
 
       let embed = new Discord.EmbedBuilder()
-        .setColor(0x020202)
+        .setColor(0xDC6E00)
         .setTitle("Central de atendimento ")
-        .setImage("https://media.discordapp.net/attachments/1204152785831206964/1209760048750796850/support.png?ex=65e817d7&is=65d5a2d7&hm=716745205417e06b5a5ae5761befe53ac031c810599f7226a757a1921c4f90bc&=&format=webp&quality=lossless&width=1626&height=574")
-        .setDescription("<:questionIcon:1220052561592320132> Possui uma dúvida ou um problema? clique no botão abaixo e você será colocado em atendimento privado com alguém da equipe Geometry Marketplace.")
+        .setImage("https://media.discordapp.net/attachments/1227432819773538305/1227432843387600906/Group_2_2.png?ex=662862ea&is=6615edea&hm=ba4aae6c3b55a0588bb733940424526a91e0b62f95a998a654f700d1e570326c&=&format=webp&quality=lossless&width=1100&height=332")
+        .setDescription("Possui uma dúvida ou um problema? clique no botão abaixo e você será colocado em atendimento privado com alguém da equipe Presentes Lol.")
         
       const button = new Discord.ActionRowBuilder().addComponents(
           new Discord.ButtonBuilder()
@@ -29,7 +29,6 @@ module.exports = {
 
       interaction.reply({ content: `✅ Mensagem enviada!`, ephemeral: true });
       interaction.channel.send({ embeds: [embed], components: [button] });
-
     }
   }
 }

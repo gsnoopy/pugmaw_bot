@@ -35,21 +35,22 @@ module.exports = {
             
             const valorString = interaction.options.getString("valor");
             const valor = Number(valorString);
+            const valorSemDecimal = Math.floor(valor);
             const qtdString= interaction.options.getString("quantidade");
             const qtd = Number(qtdString);
+            const qtdSemDecimal = Math.floor(qtd);
 
-            for (let i = 0; i < qtd; i++) {
+            for (let i = 0; i < qtdSemDecimal; i++) {
               const id =  await readTXT()
               const chave = crypto.createHash('sha1').update(String(id)).digest('hex');
-              await createKey(chave,valor);
+              await createKey(chave,valorSemDecimal);
               const proxId = Number(id) + 1
               console.log(proxId)
               await updateTXT(String(proxId))
               interaction.channel.send({content: `${chave}`})
-              
             }
            
-            interaction.editReply({content: `**${qtd} Keys criadas no banco de dados com valor: R$ ${valor}**`});
+            interaction.editReply({content: `**${qtdSemDecimal} Keys criadas no banco de dados com valor: R$ ${valorSemDecimal}**`});
           
           }
 
@@ -69,11 +70,6 @@ async function readTXT() {
 
 
 async function updateTXT(id){
-
     const caminhoDoArquivo = 'currentID.txt';
-    
-    // Apaga o conteúdo do arquivo
     await fs.promises.writeFile(caminhoDoArquivo, id);
-
-    console.log('Novo valor adicionado com sucesso.');
 }
