@@ -27,11 +27,42 @@ client.on('messageCreate', async (message) => {
   if (message.channel.id === '1227751143913033729') {
     const timestamp = new Date().toLocaleString();
     const formattedMessage = `${timestamp} - ${message.content}`;
-    const fileName = 'recharges.txt';
+    const fileName = './archives/recharges.txt';
     const fileStream = fs.createWriteStream(fileName, { flags: 'a' });
     fileStream.write(formattedMessage + '\n');
     fileStream.close();
   }
+
+  if (message.channel.id === '1228048747595038763') {
+    if (message.content.startsWith("[KEY]")) {
+      const timestamp = new Date().toLocaleString();
+      const formattedMessage = `${timestamp} - ${message.content}`;
+      const fileName = './archives/keys.txt';
+      const fileStream = fs.createWriteStream(fileName, { flags: 'a' });
+      fileStream.write(formattedMessage + '\n');
+      fileStream.end();
+    }
+  }
+
+  if (message.channel.id === '1228048789684883598') {
+      const timestamp = new Date().toLocaleString();
+      const formattedMessage = `${timestamp} - ${message.content}`;
+      const fileName = './archives/registrations.txt';
+      const fileStream = fs.createWriteStream(fileName, { flags: 'a' });
+      fileStream.write(formattedMessage + '\n');
+      fileStream.end();
+    }
+
+
+  if (message.channel.id === '1228048813223182397') {
+      const timestamp = new Date().toLocaleString();
+      const formattedMessage = `${timestamp} - ${message.content}`;
+      const fileName = './archives/sales.txt';
+      const fileStream = fs.createWriteStream(fileName, { flags: 'a' });
+      fileStream.write(formattedMessage + '\n');
+      fileStream.end();
+    }
+
 });
 
 client.on('interactionCreate', (interaction) => {
