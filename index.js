@@ -1,4 +1,5 @@
 const { Discord, Client, GatewayIntentBits } = require('./imports');
+const fs = require('fs');
 
 const client = new Client({
   intents: [
@@ -16,8 +17,21 @@ const { createTicket } = require('./modules/createModals/createTicket');
 const { submitTicket } = require('./modules/submitModals/submitTicket');
 const { deleteTicket } = require('./modules/pressButtons/deleteTicket');
 
+
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+
+});
+
+client.on('messageCreate', async (message) => {
+  if (message.channel.id === '1227751143913033729') {
+    const timestamp = new Date().toLocaleString();
+    const formattedMessage = `${timestamp} - ${message.content}`;
+    const fileName = 'recharges.txt';
+    const fileStream = fs.createWriteStream(fileName, { flags: 'a' });
+    fileStream.write(formattedMessage + '\n');
+    fileStream.close();
+  }
 });
 
 client.on('interactionCreate', (interaction) => {
